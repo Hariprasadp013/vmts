@@ -16,4 +16,12 @@ import com.vmts.app.entity.Vehicle;
 
 public interface FuelRepo extends CrudRepository<FuelDtls, String> {
 
+	@Query(value="SELECT SUM(FUEL_FILLED_AMOUNT) FROM VMTS.FUEL_DTLS WHERE DATE_OF_FILLING < current_date() AND "
+			+ "DATE_OF_FILLING > current_date()-30;",nativeQuery=true)
+	double oneMonthFuelCost();
+
+	@Query(value="select round((SUM(b.km_driven)/SUM(f.fuel_filled)),2) AS mileage from vmts.fuel_dtls f, vmts.booking b "
+			+ "where f.vehicle_id=b.vehicle_id AND f.vehicle_id = ?1 ",nativeQuery=true)
+	double calculateMileage(String regNo);
+
 }

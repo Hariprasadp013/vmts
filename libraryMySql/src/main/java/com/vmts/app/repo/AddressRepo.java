@@ -12,5 +12,5 @@ import com.vmts.app.entity.Address;
 
 
 public interface AddressRepo extends CrudRepository<Address, Integer> {
-	
+
 }

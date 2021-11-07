@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vmts.app.entity.InsuranceDtls;
@@ -39,6 +40,21 @@ public class VehicleController {
 	void updateInsurance(@RequestBody InsuranceDtls insuranceDtls) {
 		log.info("Inside VehicleController's updateInsurance method");
 		vehicleService.updateInsurance(insuranceDtls);
+	}
+	
+	@Operation(summary="Insert a Vehicle")
+	@GetMapping(value = "/count")
+	int countVehicles() {
+		log.info("Inside VehicleController's countVehicles method");
+		return vehicleService.countVehicles();
+	}
+	
+	
+	@Operation(summary="No.of insurance claims made by vehicle with Reg.No")
+	@GetMapping(value = "/insuranceClaims")
+	int insuranceClaims(@RequestParam String regId) {
+		log.info("Inside VehicleController's insuranceClaims method");
+		return vehicleService.insuranceClaims(regId);
 	}
 	
 	

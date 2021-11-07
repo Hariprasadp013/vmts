@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vmts.app.entity.FuelDtls;
@@ -37,4 +38,19 @@ public class FuelController {
 		fuelService.addFuelDtls(fuel);
 	}
 	
+	
+	
+	@Operation(summary="Total fuel cost for last one month by all vehicles")
+	@GetMapping(value = "/cost")
+	double oneMonthFuelCost() {
+		log.info("Inside FuelController's oneMonthFuelCost method");
+		return fuelService.oneMonthFuelCost();
+	}
+	
+	@Operation(summary=" Mileage for a vehicle with reg no ")
+	@GetMapping(value = "/mileage")
+	double calculateMileage(@RequestParam String regNo) {
+		log.info("Inside FuelController's calculateMileage method");
+		return fuelService.calculateMileage(regNo);
+	}
 }

@@ -68,4 +68,28 @@ public class BookingService {
 		executiveRatingRepo.save(entity);
 		
 	}
+
+	public int countBooking(String startDate, String endDate) {
+		return bookingRepo.countBooking(startDate, endDate);
+	}
+
+	public int settleCount() {
+		return bookingRepo.settleCount();
+	}
+
+	public int driverBookings(int driverId) {
+		return bookingRepo.driverBookings(driverId);
+	}
+
+	public int mostPenalties() {
+		return bookingRepo.mostPenalties();
+	}
+
+	public int bookingProfit() {
+		return bookingRepo.bookingProfit();
+	}
+
+	public int cancelledCount() {
+		return bookingRepo.cancelledCount();
+	}
 }

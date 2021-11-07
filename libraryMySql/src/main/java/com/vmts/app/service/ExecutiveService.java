@@ -34,5 +34,9 @@ public class ExecutiveService {
 		log.info("Inserting executive to the table: " + executive.toString());
 		executiveRepo.save(executive);
 	}
+
+	public int countExecutives() {
+		return executiveRepo.countExecutives();
+	}
 	
 }

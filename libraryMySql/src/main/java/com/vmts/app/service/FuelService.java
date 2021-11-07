@@ -32,5 +32,14 @@ public class FuelService {
 		log.info("Inserting fuelDtls to the table: " + fuelDtls.toString());
 		fuelRepo.save(fuelDtls);
 	}
+
+	public double oneMonthFuelCost() {
+		return fuelRepo.oneMonthFuelCost();
+		
+	}
+
+	public double calculateMileage(String regNo) {
+		return fuelRepo.calculateMileage(regNo);
+	}
 	
 }

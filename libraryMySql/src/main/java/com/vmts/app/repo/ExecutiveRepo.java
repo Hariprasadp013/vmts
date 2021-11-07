@@ -16,4 +16,7 @@ import com.vmts.app.entity.Vehicle;
 
 public interface ExecutiveRepo extends CrudRepository<Executive, Integer> {
 
+	@Query(value="SELECT COUNT(*) FROM 	VMTS.EXECUTIVE", nativeQuery=true)
+	int countExecutives();
+
 }

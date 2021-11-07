@@ -16,4 +16,8 @@ import com.vmts.app.entity.Vehicle;
 
 public interface InsuranceRepo extends CrudRepository<InsuranceDtls, Integer> {
 
+	@Query(value="SELECT A.NO_OF_CLAIMS FROM VMTS.INSURANCE_DTLS A,VMTS.VEHICLE B  WHERE B.INSURANCE_NO = A.INSURANCE_ID AND "
+			+ " B.REG_NO = ?1",nativeQuery=true)
+	int insuranceClaims(String regId);
+
 }

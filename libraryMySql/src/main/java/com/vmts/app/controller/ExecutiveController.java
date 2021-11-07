@@ -38,4 +38,11 @@ public class ExecutiveController {
 		executiveService.addExecutive(executive);
 	}
 	
+	@Operation(summary="Count executives")
+	@GetMapping(value = "/count")
+	int countExecutives() {
+		log.info("Inside ExecutiveController's countExecutives method");
+		return executiveService.countExecutives();
+	}
+	
 }

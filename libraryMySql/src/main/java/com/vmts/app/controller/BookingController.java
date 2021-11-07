@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.vmts.app.entity.Booking;
@@ -41,6 +42,37 @@ public class BookingController {
 	}
 	
 	
+	@Operation(summary="total booking in a period")
+	@GetMapping(value = "/count")
+	int countBooking(@RequestParam String startDate, @RequestParam String endDate) {
+		log.info("Inside BookingController's countBooking method");
+		return bookingService.countBooking(startDate, endDate);
+	}
+	
+	@Operation(summary="Bookings need to settle")
+	@GetMapping(value = "/settleCount")
+	int settleCount() {
+		log.info("Inside BookingController's settleCount method");
+		return bookingService.settleCount();
+	}
+	
+	@Operation(summary="Number of cancelled bookings")
+	@GetMapping(value = "/cancelledCount")
+	int cancelledCount() {
+		log.info("Inside BookingController's cancelledCount method");
+		return bookingService.cancelledCount();
+	}
+	
+	@Operation(summary="No.of bookings assigned to a specific driver")
+	@GetMapping(value = "/driverBookings")
+	int driverBookings(@RequestParam int driverId) {
+		log.info("Inside BookingController's driverBookings method");
+		return bookingService.driverBookings(driverId);
+	}
+	
+	
+	
+	
 	@Operation(summary="Rate driver")
 	@PostMapping(value = "/rate/driver")
 	void rateDriver(@RequestBody RatingModel driverRating) {
@@ -53,6 +85,20 @@ public class BookingController {
 	void rateExecutive(@RequestBody RatingModel executiveRating) {
 		log.info("Inside BookingController's rateExecutive method");
 		bookingService.rateExecutive(executiveRating);
+	}
+	
+	@Operation(summary="Driver involved with more number of penalties")
+	@GetMapping(value = "/mostPenalties")
+	int mostPenalties() {
+		log.info("Inside BookingController's mostPenalties method");
+		return bookingService.mostPenalties();
+	}
+	
+	@Operation(summary="Total profit through bookings")
+	@GetMapping(value = "/bookingProfit")
+	int bookingProfit() {
+		log.info("Inside BookingController's bookingProfit method");
+		return bookingService.bookingProfit();
 	}
 	
 }

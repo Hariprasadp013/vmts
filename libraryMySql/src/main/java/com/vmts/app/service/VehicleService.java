@@ -43,4 +43,12 @@ public class VehicleService {
 		log.info("Updates insurance for : " + insuranceDtls.toString());
 		insuranceRepo.save(insuranceDtls);
 	}
+
+	public int countVehicles() {
+		return (int) vehicleRepo.count();
+	}
+
+	public int insuranceClaims(String regId) {
+		return insuranceRepo.insuranceClaims(regId);
+	}
 }

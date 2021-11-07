@@ -44,4 +44,16 @@ public class EmployeeService {
 		addressRepo.save(address);
 		
 	}
+
+	public Optional<Employee> maxSalary() {
+		log.info("Fetching maxSalary");
+		Employee maxEmployee = employeeRepo.findMaxSalary();
+		
+		return Optional.of(maxEmployee);
+		
+	}
+
+	public Optional<List<String>> highRatings() {
+		return Optional.of(employeeRepo.findHighRatings());
+	}
 }
