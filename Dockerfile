@@ -1,4 +1,5 @@
-FROM openjdk:8
-EXPOSE 8080
-ADD target/library-0.0.1-SNAPSHOT.jar vmts.jar
-ENTRYPOINT ["java","-jar","vmts.jar"]
+FROM openjdk:8-jdk-alpine
+EXPOSE 8081
+ARG JAR_FILE=target/*.jar
+COPY ${JAR_FILE} app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
